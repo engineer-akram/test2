@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,10 +11,10 @@
         <h2>Submit Your Details</h2>
         <form id="dataForm">
             <label for="id">ID:</label>
-            <input type="text" id="id" name="id" placeholder="Enter ID or Search" required>
+            <input type="text" id="id" name="id" placeholder="Enter ID (or search by name)">
             
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name" placeholder="Enter Name (for search/update/delete)" required>
+            <input type="text" id="name" name="name" placeholder="Enter Name" required>
             
             <label for="age">Age:</label>
             <input type="number" id="age" name="age" required>
@@ -54,7 +54,7 @@
             let statusMessage = document.getElementById("status");
             statusMessage.textContent = "Processing...";
 
-            fetch("https://script.google.com/macros/s/AKfycbypQznwKQBM0288itUKa_CqBX-UE810vEm3MZvZ1zui0aO_7Qj0cCOPAbubdFIXxQdi/exec", {
+            fetch("https://script.google.com/macros/s/AKfycbwtC5Gcx4SkkZ5rX-UJA9SjFPbRXBSWK4_Mgo3xmL_yDj6u_bNcmRa_YRP__8xV1NJu/exec", {
                 method: "POST",
                 body: formData
             })
