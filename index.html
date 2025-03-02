@@ -10,6 +10,9 @@
     <main class="container">
         <h2>Submit Your Details</h2>
         <form id="dataForm">
+            <label for="id">ID:</label>
+            <input type="text" id="id" name="id" placeholder="(Auto-filled on Search)" readonly>
+            
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" placeholder="Enter Name (for search/update/delete)" required>
             
@@ -51,7 +54,7 @@
             let statusMessage = document.getElementById("status");
             statusMessage.textContent = "Processing...";
 
-            fetch("https://script.google.com/macros/s/AKfycbyXNSVbUpBAoFNzXx2gJ9p4Yc0Ja3zOUKA2b7OxfIMN-cApReswdKSloY5BkMkqKaCY/exec", {
+            fetch("https://script.google.com/macros/s/AKfycby2XHl0ysYLkuQBxxcE873HMr61tqk3ZqegnySaXGe0LGxsWKiMfANeGDKh00Ps_3UZ/exec", {
                 method: "POST",
                 body: formData
             })
@@ -60,6 +63,7 @@
                 statusMessage.textContent = data.message;
                 
                 if (action === "search" && data.result) {
+                    document.getElementById("id").value = data.result.id;
                     document.getElementById("name").value = data.result.name;
                     document.getElementById("age").value = data.result.age;
                     document.getElementById("address").value = data.result.address;
