@@ -11,7 +11,7 @@
         <h2>Submit Your Details</h2>
         <form id="dataForm">
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+            <input type="text" id="name" name="name" placeholder="Enter Name (for search/update/delete)" required>
             
             <label for="age">Age:</label>
             <input type="number" id="age" name="age" required>
@@ -48,26 +48,29 @@
         function sendData(action) {
             let formData = new FormData(document.getElementById("dataForm"));
             formData.append("action", action);
+            let statusMessage = document.getElementById("status");
+            statusMessage.textContent = "Processing...";
 
-            fetch("https://script.google.com/macros/s/AKfycbyqSdexHJDl98W8Vcdm1tiBciESZaPST28PbPc8igOI5PnBY4E2FNLVoSJrfoDVh_fx/exec/exec", {
+            fetch("https://script.google.com/macros/s/AKfycbyXNSVbUpBAoFNzXx2gJ9p4Yc0Ja3zOUKA2b7OxfIMN-cApReswdKSloY5BkMkqKaCY/exec", {
                 method: "POST",
                 body: formData
             })
             .then(response => response.json())
             .then(data => {
-                document.getElementById("status").textContent = data.message;
+                statusMessage.textContent = data.message;
+                
                 if (action === "search" && data.result) {
                     document.getElementById("name").value = data.result.name;
                     document.getElementById("age").value = data.result.age;
                     document.getElementById("address").value = data.result.address;
                 }
-                if (action !== "search") {
+                if (action === "delete" || action === "update" || action === "add") {
                     document.getElementById("dataForm").reset();
                 }
             })
             .catch(error => {
                 console.error("Error:", error);
-                document.getElementById("status").textContent = "Error processing request";
+                statusMessage.textContent = "Error processing request. Please try again.";
             });
         }
     </script>
