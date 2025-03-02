@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,41 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google Sheets Form</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            margin: 0;
-            padding: 1rem;
-        }
-        main {
-            width: 100%;
-            max-width: 500px;
-            padding: 2rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            text-align: center;
-        }
-        h2 {
-            color: #4a4a4a;
-            margin-bottom: 1rem;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        button {
-            width: 100%;
-            padding: 0.75rem;
-            font-size: 1rem;
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body>
     <main class="container">
@@ -65,19 +31,6 @@
     </main>
     
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const inputs = document.querySelectorAll("input");
-            inputs.forEach((input, index) => {
-                input.addEventListener("keydown", function(event) {
-                    if (event.key === "Enter") {
-                        event.preventDefault();
-                        const nextInput = inputs[index + 1];
-                        if (nextInput) nextInput.focus();
-                    }
-                });
-            });
-        });
-
         function submitData(action) {
             let formData = new FormData();
             formData.append("id", document.getElementById("id").value);
@@ -105,3 +58,6 @@
     </script>
 </body>
 </html>
+
+
+
