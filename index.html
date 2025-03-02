@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google Sheets Form</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
+        main {
+            max-width: 500px;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <main class="container">
@@ -31,6 +49,19 @@
     </main>
     
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const inputs = document.querySelectorAll("input");
+            inputs.forEach((input, index) => {
+                input.addEventListener("keydown", function(event) {
+                    if (event.key === "Enter") {
+                        event.preventDefault();
+                        const nextInput = inputs[index + 1];
+                        if (nextInput) nextInput.focus();
+                    }
+                });
+            });
+        });
+
         function submitData(action) {
             let formData = new FormData();
             formData.append("id", document.getElementById("id").value);
@@ -39,7 +70,7 @@
             formData.append("address", document.getElementById("address").value);
             formData.append("action", action);
 
-            fetch("https://script.google.com/macros/s/AKfycbziyQu0MJiH38kzOyydg2ZQN964VoQmGps3KIVUffUp2Jbadqr6rj9Cpr6VZYQ_6pCL/exec", { // Replace with your Web App URL
+            fetch("https://script.google.com/macros/s/AKfycbXYZ123456789/exec", { // Replace with your Web App URL
                 method: "POST",
                 body: formData
             })
